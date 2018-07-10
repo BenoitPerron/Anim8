@@ -7,7 +7,7 @@ import cv2
 import time
 
 def show_webcam():
-    cam = cv2.VideoCapture(0)
+    cam = cv2.VideoCapture(1)
     frame = 0
     while True:
 #        if frame > 0:
@@ -28,7 +28,10 @@ def show_webcam():
             break  # esc to quit
         elif key == 32: 
             cv2.imwrite("frame%03d.png"%frame, img)
-            onion = img.copy()
+#            onion = img.copy()
+            onion = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            onion = cv2.cvtColor(onion, cv2.COLOR_GRAY2BGR)
+
             print "onion {} ".format(id(onion)),
 #            if frame > 0:
 #                cv2.imwrite("view%03d.png"%frame, view)
